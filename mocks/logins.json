@@ -1,0 +1,52 @@
+[
+    {
+        "horario": "22/07/2026 16:55:12",
+        "falha": false,
+        "tentativas": 0
+    },
+    {
+        "horario": "22/07/2026 16:41:08",
+        "falha": true,
+        "tentativas": 3
+    },
+    {
+        "horario": "22/07/2026 16:22:37",
+        "falha": true,
+        "tentativas": 2
+    },
+    {
+        "horario": "22/07/2026 15:58:44",
+        "falha": true,
+        "tentativas": 1
+    },
+    {
+        "horario": "22/07/2026 15:37:19",
+        "falha": false,
+        "tentativas": 0
+    },
+    {
+        "horario": "22/07/2026 15:11:53",
+        "falha": true,
+        "tentativas": 2
+    },
+    {
+        "horario": "22/07/2026 14:49:06",
+        "falha": true,
+        "tentativas": 1
+    },
+    {
+        "horario": "22/07/2026 14:20:31",
+        "falha": false,
+        "tentativas": 0
+    },
+    {
+        "horario": "22/07/2026 13:57:42",
+        "falha": false,
+        "tentativas": 0
+    },
+    {
+        "horario": "22/07/2026 13:32:18",
+        "falha": true,
+        "tentativas": 1
+    }
+]

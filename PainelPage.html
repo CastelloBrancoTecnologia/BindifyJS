@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR" viewmodel="PainelPageViewModel">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BindifyJS — Painel de controle</title>
+
+    <script type="module" src="PainelPageViewModel.js?v=20260731"></script>
+    <script type="module" src="BindifyJS.auto.js?v=20260731"></script>
+    <link rel="stylesheet" href="PainelPage.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <a class="brand" href="PainelPage.html">BindifyJS</a>
+        <nav aria-label="Navegação principal">
+            <a class="active" href="#inicio">Visão geral</a>
+            <a href="#atividades">Atividades</a>
+            <a href="#perfil">Meu perfil</a>
+        </nav>
+        <button
+            class="logout"
+            type="button"
+            data-event="event: click; method: sair;">
+            Sair
+        </button>
+    </aside>
+
+    <main id="inicio">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Painel de controle</p>
+                <h1>
+                    Olá,
+                    <span data-bind="
+                        target: textContent;
+                        source: primeiroNome;
+                        mode: oneway;
+                    "></span>
+                </h1>
+                <p>Acompanhe o que está acontecendo na sua conta.</p>
+            </div>
+            <div class="avatar" data-bind="
+                target: textContent;
+                source: iniciais;
+                mode: oneway;
+            "></div>
+        </header>
+
+        <section class="metrics" aria-label="Resumo da conta">
+            <article>
+                <span>Projetos ativos</span>
+                <strong data-bind="
+                    target: textContent;
+                    source: projetosAtivos;
+                "></strong>
+                <small>+2 neste mês</small>
+            </article>
+            <article>
+                <span>Tarefas abertas</span>
+                <strong data-bind="
+                    target: textContent;
+                    source: tarefasAbertas;
+                "></strong>
+                <small>3 prioritárias</small>
+            </article>
+            <article>
+                <span>Conclusão</span>
+                <strong data-bind="
+                    target: textContent;
+                    source: percentualConclusao;
+                "></strong>
+                <small>da configuração inicial</small>
+            </article>
+        </section>
+
+        <div class="dashboard-grid">
+            <section id="atividades" class="panel activities">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">Linha do tempo</p>
+                        <h2>Atividades recentes</h2>
+                    </div>
+                    <button
+                        type="button"
+                        data-event="event: click; method: adicionarAtividade;">
+                        Simular atividade
+                    </button>
+                </div>
+
+                <ol class="activity-list">
+                    <template
+                        data-for="atividade in atividades"
+                        data-for-key="id"
+                        data-for-limit="6">
+                        <li>
+                            <span class="activity-dot"></span>
+                            <div>
+                                <strong>${atividade.titulo}</strong>
+                                <p>${atividade.descricao}</p>
+                            </div>
+                            <time>${atividade.horario}</time>
+                        </li>
+                    </template>
+                </ol>
+            </section>
+
+            <section id="perfil" class="panel profile">
+                <p class="eyebrow">Sua conta</p>
+                <h2>Perfil</h2>
+                <dl>
+                    <div>
+                        <dt>Nome</dt>
+                        <dd data-bind="target: textContent; source: nome;"></dd>
+                    </div>
+                    <div>
+                        <dt>E-mail</dt>
+                        <dd data-bind="target: textContent; source: email;"></dd>
+                    </div>
+                    <div>
+                        <dt>Telefone</dt>
+                        <dd data-bind="target: textContent; source: telefone;"></dd>
+                    </div>
+                </dl>
+                <p class="profile-status">
+                    <span></span>
+                    Cadastro ativo
+                </p>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

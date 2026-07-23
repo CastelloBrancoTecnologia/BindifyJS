@@ -1,0 +1,47 @@
+:host {
+    display: block;
+    margin-top: 1rem;
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+.card {
+    position: relative;
+    padding: 1rem 3rem 1rem 1rem;
+    border: 1px solid #9ab6a0;
+    border-radius: .75rem;
+    background: #eef8f0;
+    box-shadow: 0 .35rem 1rem rgb(0 0 0 / 10%);
+}
+
+p {
+    margin: 0;
+}
+
+.header slot::slotted(*) {
+    margin-top: 0;
+}
+
+.content {
+    margin-top: 1rem;
+}
+
+.footer {
+    margin-top: 1rem;
+}
+
+.close {
+    position: absolute;
+    top: .35rem;
+    right: .45rem;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}

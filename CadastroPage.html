@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="pt-BR" viewmodel="CadastroPageViewModel">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BindifyJS — Criar conta</title>
+
+    <script type="module" src="CadastroPageViewModel.js?v=20260805"></script>
+    <script type="module" src="BindifyJS.auto.js?v=20260805"></script>
+
+    <link
+        rel="component"
+        href="components/card.html?v=20260802"
+        script="components/card.js?v=20260802">
+    <link rel="stylesheet" href="CadastroPage.css">
+</head>
+<body>
+    <main class="registration-shell">
+        <header class="page-header">
+            <p class="eyebrow">BindifyJS</p>
+            <h1>Crie sua conta</h1>
+            <p>Preencha seus dados para acessar o painel de controle.</p>
+        </header>
+
+        <form
+            class="registration-form"
+            data-binding-group="cadastro"
+            data-event="
+                { event: bindingscommit; method: cadastrar; }
+                { event: bindingsinvalid; method: cadastroInvalido; }
+            ">
+            <section class="photo-field full" aria-labelledby="foto-label">
+                <div>
+                    <span id="foto-label" class="field-label">
+                        Biometria facial
+                    </span>
+                    <p>
+                        Usaremos uma captura frontal para preparar o acesso
+                        por reconhecimento facial.
+                    </p>
+                </div>
+                <div class="photo-actions">
+                    <button
+                        class="photo-button"
+                        type="button"
+                        aria-label="Abrir câmera para cadastrar biometria facial"
+                        data-event="event: click; method: abrirCamera;">
+                        <img
+                            alt="Captura usada no cadastro biométrico facial"
+                            data-if="temBiometria"
+                            data-bind="
+                                target: src;
+                                source: fotoPreview;
+                                mode: oneway;
+                            ">
+                        <span class="photo-placeholder" data-else="temBiometria">
+                            <span aria-hidden="true">◉</span>
+                            Cadastrar rosto
+                        </span>
+                        <span class="photo-edit" aria-hidden="true">
+                            Refazer captura
+                        </span>
+                    </button>
+                    <div>
+                        <button
+                            class="text-button"
+                            type="button"
+                            data-event="event: click; method: abrirCamera;">
+                            <span data-if="temBiometria">Refazer biometria</span>
+                            <span data-else="temBiometria">Iniciar captura</span>
+                        </button>
+                        <button
+                            class="text-button danger"
+                            type="button"
+                            data-if="temBiometria"
+                            data-event="event: click; method: removerFoto;">
+                            Remover
+                        </button>
+                    </div>
+                    <p class="biometric-status" data-if="temBiometria">
+                        <span aria-hidden="true">✓</span>
+                        Biometria facial capturada
+                    </p>
+                    <small class="photo-error" data-if="cameraErro">
+                        <span data-bind="
+                            target: textContent;
+                            source: cameraErro;
+                        "></span>
+                    </small>
+                    <label
+                        class="text-button file-button camera-fallback"
+                        for="captura-dispositivo"
+                        data-if="cameraFallbackDisponivel">
+                        Usar câmera do dispositivo
+                    </label>
+                    <input
+                        id="captura-dispositivo"
+                        class="visually-hidden"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        capture="user"
+                        data-event="
+                            event: change;
+                            method: selecionarCapturaDispositivo;
+                        ">
+                    <small data-validation-for="biometriaConfirmada"></small>
+                </div>
+                <input
+                    class="visually-hidden"
+                    type="checkbox"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    data-bind="
+                        target: checked;
+                        source: biometriaConfirmada;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+            </section>
+
+            <div class="field full">
+                <label for="nome">Nome completo</label>
+                <input
+                    id="nome"
+                    autocomplete="name"
+                    data-bind="
+                        target: value;
+                        source: nome;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+                <small data-validation-for="nome"></small>
+            </div>
+
+            <div
+                class="field full"
+                data-class="
+                    error: fieldState.email.error;
+                    pending: fieldState.email.pending;
+                    changed: fieldState.email.changed;
+                ">
+                <label for="email">E-mail <span>(seu usuário)</span></label>
+                <input
+                    id="email"
+                    type="email"
+                    autocomplete="email"
+                    data-bind="
+                        target: value;
+                        source: email;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+                <small data-validation-for="email"></small>
+                <small class="pending" data-if="fieldState.email.pending">
+                    Verificando disponibilidade do e-mail...
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="telefone">Telefone</label>
+                <input
+                    id="telefone"
+                    type="tel"
+                    autocomplete="tel"
+                    placeholder="(11) 99999-9999"
+                    data-bind="
+                        target: value;
+                        source: telefone;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+                <small data-validation-for="telefone"></small>
+            </div>
+
+            <div class="field">
+                <label for="cpf">CPF</label>
+                <input
+                    id="cpf"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    placeholder="000.000.000-00"
+                    data-bind="
+                        target: value;
+                        source: cpf;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+                <small data-validation-for="cpf"></small>
+            </div>
+
+            <div class="field full">
+                <label for="dataNascimento">Data de nascimento</label>
+                <input
+                    id="dataNascimento"
+                    type="date"
+                    autocomplete="bday"
+                    data-bind="
+                        target: value;
+                        source: dataNascimento;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+                <small data-validation-for="dataNascimento"></small>
+            </div>
+
+            <div class="field">
+                <label for="senha">Senha</label>
+                <input
+                    id="senha"
+                    type="password"
+                    autocomplete="new-password"
+                    data-bind="
+                        target: value;
+                        source: senha;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+                <small data-validation-for="senha"></small>
+            </div>
+
+            <div class="field">
+                <label for="confirmacaoSenha">Confirme a senha</label>
+                <input
+                    id="confirmacaoSenha"
+                    type="password"
+                    autocomplete="new-password"
+                    data-bind="
+                        target: value;
+                        source: confirmacaoSenha;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+                <small data-validation-for="confirmacaoSenha"></small>
+            </div>
+
+            <div class="biometric-consent full">
+                <input
+                    id="consentimentoBiometria"
+                    type="checkbox"
+                    data-bind="
+                        target: checked;
+                        source: consentimentoBiometria;
+                        mode: twoway;
+                        when: groupcommit;
+                    ">
+                <label for="consentimentoBiometria">
+                    Autorizo o uso desta captura para autenticação facial.
+                    <span>
+                        Este exemplo mantém os dados apenas nesta sessão do
+                        navegador.
+                    </span>
+                </label>
+                <small data-validation-for="consentimentoBiometria"></small>
+            </div>
+
+            <div class="form-actions full">
+                <button
+                    class="primary"
+                    type="button"
+                    data-binding-commit="cadastrar">
+                    Criar minha conta
+                </button>
+                <button
+                    class="secondary"
+                    type="button"
+                    data-binding-cancel
+                    data-event="event: click; method: limpar;">
+                    Limpar
+                </button>
+                <a href="LoginPage.html">Já tenho uma conta</a>
+            </div>
+        </form>
+
+        <section
+            class="camera-overlay"
+            data-if="cameraAberta"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="camera-title">
+            <div class="camera-panel">
+                <header>
+                    <div>
+                        <p class="eyebrow">Cadastro biométrico</p>
+                        <h2 id="camera-title">Posicione seu rosto</h2>
+                    </div>
+                    <button
+                        class="icon-button"
+                        type="button"
+                        aria-label="Fechar câmera"
+                        data-event="event: click; method: fecharCamera;">
+                        ×
+                    </button>
+                </header>
+                <div class="camera-frame">
+                    <video
+                        id="camera-video"
+                        data-element-ref="camera"
+                        autoplay
+                        muted
+                        playsinline>
+                    </video>
+                    <div class="face-guide" aria-hidden="true">
+                        <span></span>
+                    </div>
+                    <p data-if="cameraCarregando">
+                        Solicitando acesso à câmera...
+                    </p>
+                </div>
+                <p class="camera-help">
+                    Retire óculos escuros, olhe de frente e mantenha uma
+                    expressão neutra. Evite luz forte atrás de você.
+                </p>
+                <div class="camera-controls">
+                    <button
+                        class="secondary"
+                        type="button"
+                        data-event="event: click; method: fecharCamera;">
+                        Cancelar
+                    </button>
+                    <button
+                        class="primary capture"
+                        type="button"
+                        data-bind="
+                            target: disabled;
+                            source: cameraIndisponivel;
+                            mode: oneway;
+                        "
+                        data-event="event: click; method: capturarFoto;">
+                        <span aria-hidden="true"></span>
+                        Capturar biometria
+                    </button>
+                </div>
+            </div>
+        </section>
+        <canvas
+            id="camera-canvas"
+            data-element-ref="cameraCanvas"
+            hidden>
+        </canvas>
+
+        <mensagem-card
+            id="cadastro-card"
+            data-element-ref="cadastroCard"
+            hidden
+            data-bind="target: texto; source: mensagem; mode: oneway;">
+            <h2 slot="header">Conta criada com sucesso</h2>
+            <p slot="content">
+                Você será levado ao painel em
+                <strong data-bind="
+                    target: textContent;
+                    source: segundosRestantes;
+                    mode: oneway;
+                "></strong>
+                segundos.
+            </p>
+            <a slot="footer" href="PainelPage.html">
+                Ir para o painel agora
+            </a>
+        </mensagem-card>
+    </main>
+</body>
+</html>

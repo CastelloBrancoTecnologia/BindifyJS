@@ -1,0 +1,58 @@
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 32rem;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+login-form {
+    display: block;
+}
+
+mensagem-card h2 {
+    margin-bottom: .75rem;
+}
+
+mensagem-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+mensagem-card caption {
+    margin-bottom: .5rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+mensagem-card th,
+mensagem-card td {
+    padding: .45rem .6rem;
+    border-bottom: 1px solid #c9ddcd;
+    text-align: left;
+}
+
+mensagem-card th:first-child,
+mensagem-card td:first-child {
+    width: 2rem;
+}
+
+mensagem-card .login-result {
+    width: 6rem;
+    text-align: center;
+}
+
+mensagem-card .login-failure {
+    color: #b42318;
+    font-weight: 700;
+}
+
+mensagem-card .login-success {
+    color: #15803d;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+mensagem-card .empty {
+    margin: 0;
+    color: #526057;
+}

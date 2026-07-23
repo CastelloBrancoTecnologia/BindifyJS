@@ -1,0 +1,76 @@
+<template data-component="login-form">
+    <section
+        class="login"
+        data-binding-group="login"
+        data-event="event: bindingscommit; method: confirmarAcao;">
+        <h1>Login</h1>
+
+        <label for="usuario">Usuário</label>
+        <input
+            id="usuario"
+            autocomplete="username"
+            data-bind="
+                target: value;
+                source: usuario;
+                mode: twoway;
+                when: groupcommit;
+            ">
+        <small
+            class="validation-message"
+            data-validation-for="usuario">
+        </small>
+
+        <label for="senha">Senha</label>
+        <input
+            id="senha"
+            type="password"
+            autocomplete="current-password"
+            data-bind="
+                target: value;
+                source: senha;
+                mode: twoway;
+                when: groupcommit;
+            ">
+        <small
+            class="validation-message"
+            data-validation-for="senha">
+        </small>
+
+        <div class="actions">
+            <button
+                type="button"
+                data-binding-commit="entrar">
+                Continuar
+            </button>
+
+            <button
+                type="button"
+                data-binding-cancel
+                data-event="event: click; method: limpar;">
+                Limpar
+            </button>
+        </div>
+
+        <div class="secondary-actions">
+            <button
+                type="button"
+                data-binding-commit="recuperar-senha"
+                data-binding-fields="usuario">
+                Esqueci minha senha
+            </button>
+
+            <button
+                type="button"
+                data-binding-commit="cadastrar"
+                data-binding-fields="usuario">
+                Não sou cadastrado, quero me cadastrar
+            </button>
+        </div>
+
+        <small data-if="fieldState.usuario.pending">
+            Verificando disponibilidade do usuário...
+        </small>
+    </section>
+</template>
+
+<link rel="stylesheet" href="./login.css">

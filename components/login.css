@@ -1,0 +1,54 @@
+:host {
+    display: block;
+}
+
+label,
+input,
+button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[aria-invalid="true"] {
+    border-color: #b42318;
+    outline-color: #b42318;
+}
+
+.validation-message {
+    display: block;
+    margin: -.65rem 0 1rem;
+    color: #b42318;
+    font-size: .875rem;
+}
+
+.validation-message[hidden] {
+    display: none;
+}
+
+input,
+button {
+    margin: .35rem 0 1rem;
+    padding: .7rem;
+}
+
+.actions {
+    display: flex;
+    gap: .75rem;
+}
+
+.secondary-actions {
+    margin-top: .5rem;
+    padding-top: .75rem;
+    border-top: 1px solid #d8e2da;
+}
+
+.secondary-actions button {
+    margin-bottom: .5rem;
+    border: 0;
+    background: transparent;
+    color: #245c36;
+    text-align: left;
+    text-decoration: underline;
+    cursor: pointer;
+}

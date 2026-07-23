@@ -1,0 +1,36 @@
+<template data-component="mensagem-card">
+    <article class="card" role="status" aria-live="polite">
+        <button
+            class="close"
+            type="button"
+            aria-label="Fechar"
+            title="Fechar"
+            data-event="event: click; method: esconder;">
+            &times;
+        </button>
+
+        <header class="header">
+            <slot name="header"></slot>
+        </header>
+
+        <div class="message">
+            <slot name="message">
+                <p data-bind="
+                    target: textContent;
+                    source: texto;
+                    mode: oneway;
+                "></p>
+            </slot>
+        </div>
+
+        <div class="content">
+            <slot name="content"></slot>
+        </div>
+
+        <footer class="footer">
+            <slot name="footer"></slot>
+        </footer>
+    </article>
+</template>
+
+<link rel="stylesheet" href="./card.css">

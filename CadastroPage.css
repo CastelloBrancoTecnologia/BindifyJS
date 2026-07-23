@@ -1,0 +1,515 @@
+:root {
+    color: #17211b;
+    background: #f4f7f5;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    padding: 3rem 1rem;
+}
+
+.registration-shell {
+    width: min(100%, 48rem);
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+    margin: 0 0 .35rem;
+    color: #19734a;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 3rem);
+    letter-spacing: -.04em;
+}
+
+.page-header > p:last-child {
+    margin: .55rem 0 0;
+    color: #607066;
+}
+
+.registration-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid #d8e2dc;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 0 1rem 3rem rgb(28 58 42 / 8%);
+}
+
+.field {
+    display: grid;
+    align-content: start;
+    gap: .4rem;
+}
+
+.field.error input {
+    border-color: #b42318;
+    font-weight: 700;
+    animation: field-error .22s ease-out;
+}
+
+.field.pending input {
+    border-color: #3166a3;
+}
+
+.field.changed label::after {
+    content: " • alterado";
+    color: #607066;
+    font-size: .75rem;
+    font-weight: 500;
+}
+
+@keyframes field-error {
+    25% { transform: translateX(-.18rem); }
+    75% { transform: translateX(.18rem); }
+}
+
+.field-label {
+    display: block;
+    font-weight: 700;
+}
+
+.photo-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem;
+    border: 1px solid #d8e2dc;
+    border-radius: .8rem;
+    background: #f7faf8;
+}
+
+.photo-field p {
+    margin: .3rem 0 0;
+    color: #607066;
+    font-size: .9rem;
+    line-height: 1.45;
+}
+
+.photo-actions {
+    display: grid;
+    grid-template-columns: 8rem minmax(10rem, 1fr);
+    align-items: center;
+    gap: .4rem 1rem;
+}
+
+.photo-button {
+    position: relative;
+    grid-row: 1 / span 3;
+    width: 8rem;
+    height: 8rem;
+    overflow: hidden;
+    padding: 0;
+    border: 2px dashed #7c9686;
+    border-radius: .9rem;
+    color: #19734a;
+    background: #eaf3ee;
+}
+
+.photo-button:hover,
+.photo-button:focus-visible {
+    border-color: #19734a;
+    outline: 3px solid rgb(25 115 74 / 16%);
+}
+
+.photo-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-placeholder {
+    display: grid;
+    place-items: center;
+    gap: .35rem;
+    padding: .75rem;
+    font-size: .78rem;
+    font-weight: 800;
+}
+
+.photo-placeholder span {
+    font-size: 2.3rem;
+    line-height: 1;
+}
+
+.photo-edit {
+    position: absolute;
+    inset: auto 0 0;
+    padding: .35rem;
+    color: white;
+    background: rgb(16 40 28 / 78%);
+    font-size: .72rem;
+    font-weight: 800;
+    opacity: 0;
+    transition: opacity .18s ease;
+}
+
+.photo-button:hover .photo-edit,
+.photo-button:focus-visible .photo-edit {
+    opacity: 1;
+}
+
+.photo-actions > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem;
+}
+
+.text-button,
+.file-button {
+    min-height: auto;
+    padding: .2rem 0;
+    border: 0;
+    color: #19734a;
+    background: transparent;
+    font: inherit;
+    font-size: .88rem;
+    font-weight: 750;
+    text-decoration: underline;
+    text-underline-offset: .2rem;
+}
+
+.text-button.danger {
+    color: #b42318;
+}
+
+.biometric-status {
+    color: #19734a !important;
+    font-weight: 750;
+}
+
+.biometric-status span {
+    display: inline-grid;
+    width: 1.2rem;
+    height: 1.2rem;
+    place-items: center;
+    margin-right: .25rem;
+    border-radius: 50%;
+    color: white;
+    background: #19734a;
+    font-size: .72rem;
+}
+
+.photo-error {
+    grid-column: 2;
+    color: #b42318;
+}
+
+.camera-fallback {
+    grid-column: 2;
+    justify-self: start;
+}
+
+.biometric-consent {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .25rem .65rem;
+    padding: .85rem 1rem;
+    border-radius: .7rem;
+    background: #f4f7f5;
+}
+
+.biometric-consent input {
+    width: 1.15rem;
+    min-height: 1.15rem;
+    margin-top: .15rem;
+    accent-color: #19734a;
+}
+
+.biometric-consent label {
+    font-size: .9rem;
+}
+
+.biometric-consent label span {
+    display: block;
+    margin-top: .15rem;
+}
+
+.biometric-consent small {
+    grid-column: 2;
+}
+
+.camera-overlay {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    background: rgb(12 25 18 / 74%);
+    backdrop-filter: blur(.3rem);
+}
+
+.camera-panel {
+    width: min(100%, 34rem);
+    padding: 1.1rem;
+    border-radius: 1.1rem;
+    background: white;
+    box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 28%);
+}
+
+.camera-panel header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.camera-panel h2 {
+    margin: 0;
+}
+
+.icon-button {
+    width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0;
+    border: 1px solid #d8e2dc;
+    border-radius: 50%;
+    color: #314239;
+    background: white;
+    font-size: 1.5rem;
+}
+
+.camera-frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: .9rem;
+    background: #17211b;
+}
+
+.camera-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.camera-frame > p {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    margin: 0;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+
+.face-guide {
+    position: absolute;
+    inset: 10%;
+    border: 2px solid rgb(255 255 255 / 85%);
+    border-radius: 46% 46% 42% 42%;
+    box-shadow: 0 0 0 8rem rgb(0 0 0 / 25%);
+}
+
+.face-guide span::before,
+.face-guide span::after {
+    position: absolute;
+    top: 48%;
+    width: .45rem;
+    height: .45rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 75%);
+    content: "";
+}
+
+.face-guide span::before {
+    left: 31%;
+}
+
+.face-guide span::after {
+    right: 31%;
+}
+
+.camera-help {
+    margin: .8rem 0;
+    color: #607066;
+    font-size: .86rem;
+    line-height: 1.45;
+}
+
+.camera-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: .7rem;
+}
+
+.capture {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.capture span {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px #19734a;
+    background: white;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-weight: 700;
+}
+
+label span {
+    color: #6b786f;
+    font-size: .85rem;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    min-height: 2.85rem;
+    padding: .7rem .8rem;
+    border: 1px solid #aab9af;
+    border-radius: .55rem;
+    color: inherit;
+    background: #fbfdfc;
+    font: inherit;
+}
+
+input:focus {
+    border-color: #19734a;
+    outline: 3px solid rgb(25 115 74 / 16%);
+}
+
+input[aria-invalid="true"] {
+    border-color: #b42318;
+}
+
+[data-validation-for] {
+    color: #b42318;
+    font-size: .84rem;
+}
+
+.pending {
+    color: #3166a3;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: .35rem;
+}
+
+button,
+.form-actions a {
+    min-height: 2.65rem;
+    padding: .65rem 1rem;
+    border-radius: .55rem;
+    font: inherit;
+    font-weight: 750;
+}
+
+button {
+    cursor: pointer;
+}
+
+.primary {
+    border: 1px solid #14633f;
+    color: white;
+    background: #19734a;
+}
+
+.secondary {
+    border: 1px solid #bdc9c1;
+    color: #314239;
+    background: white;
+}
+
+.form-actions a {
+    display: inline-flex;
+    align-items: center;
+    color: #19734a;
+}
+
+mensagem-card {
+    margin-top: 1.25rem;
+}
+
+mensagem-card h2 {
+    margin: 0;
+}
+
+mensagem-card a {
+    color: #14633f;
+    font-weight: 750;
+}
+
+@media (max-width: 38rem) {
+    body {
+        padding-top: 1.5rem;
+    }
+
+    .registration-form {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .field,
+    .full {
+        grid-column: 1;
+    }
+
+    .photo-field {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-actions {
+        grid-template-columns: 6.5rem 1fr;
+    }
+
+    .photo-button {
+        width: 6.5rem;
+        height: 6.5rem;
+    }
+
+    .camera-panel {
+        padding: .85rem;
+    }
+}

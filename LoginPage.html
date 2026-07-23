@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR" viewmodel="LoginPageViewModel">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BindifyJS — Login</title>
+
+    <script type="module" src="LoginPageViewModel.js?v=20260731"></script>
+    <script type="module" src="BindifyJS.auto.js?v=20260731"></script>
+
+    <link
+        rel="component"
+        href="components/card.html"
+        script="components/card.js">
+    <link
+        rel="component"
+        href="components/login.html?v=20260731"
+        script="components/login.js?v=20260731">
+    <link rel="stylesheet" href="LoginPage.css">
+</head>
+<body>
+    <login-form
+        data-bind="
+            { target: usuario; source: usuario; mode: twoway; }
+            { target: senha; source: senha; mode: twoway; }
+        "
+        data-event="
+            { event: entrar; method: continuar; }
+            { event: limpar; method: limpar; }
+            { event: recuperarsenha; method: recuperarSenha; }
+            { event: cadastrar; method: cadastrar; }
+        ">
+    </login-form>
+
+    <mensagem-card
+        id="login-success-card"
+        hidden
+        data-bind="target: texto; source: cardTexto; mode: oneway;">
+
+        <h2 slot="header">Histórico de acesso</h2>
+
+        <table slot="content" data-if="ultimosLogins.length">
+            <caption>Últimos horários de login</caption>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template
+                    data-for="ultimosLogins"
+                    data-for-start-index="0"
+                    data-for-limit="10"
+                    data-for-increment="1">
+                    <tr>
+                        <td>${$number}</td>
+                        <td>${item.horario}</td>
+                        <td class="login-result">
+                            <span
+                                class="login-failure"
+                                data-if="item.falha"
+                                title="Senha incorreta">
+                                &times; (${item.tentativas})
+                            </span>
+                            <span
+                                class="login-success"
+                                data-else="item.falha"
+                                title="Login válido">
+                                &#10003;
+                            </span>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+
+        <p
+            slot="content"
+            class="empty"
+            data-else="ultimosLogins.length">
+            Nenhum horário de login registrado.
+        </p>
+    </mensagem-card>
+</body>
+</html>
