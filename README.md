@@ -13,6 +13,17 @@ Sua principal proposta é resolver a mesma classe de problemas atendida por
 Angular e Vue, mas sem exigir pré-compiladores, TypeScript ou uma cadeia de
 build. A aplicação continua sendo HTML declarativo, CSS e JavaScript puro.
 
+Esse desenho acompanha um movimento prático em muitas organizações: reduzir
+dependências grandes, diminuir camadas obrigatórias de build e voltar a usar
+as capacidades nativas do navegador sempre que elas forem suficientes. Em
+times que precisam manter produtos por muitos anos, JavaScript puro reduz
+acoplamento a toolchains, facilita auditorias, simplifica onboarding e evita
+que decisões de infraestrutura dominem a evolução da aplicação. Para alguns
+projetos, isso inclui até remover TypeScript do caminho crítico de execução,
+mantendo tipos como apoio de editor quando úteis, mas sem transformar a
+entrega ao navegador em uma etapa compilada obrigatória. BindifyJS adota essa
+premissa como parte do seu design.
+
 A sintaxe segue KISS: o HTML descreve o comportamento e o programador escreve
 JavaScript principalmente no ViewModel. A complexidade de sincronização,
 eventos, validação, lifecycle, atualização do DOM e cleanup fica concentrada
