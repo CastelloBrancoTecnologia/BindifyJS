@@ -1,0 +1,4 @@
+interface:
+  display_name: "BindifyJS"
+  short_description: "Build declarative apps with BindifyJS"
+  default_prompt: "Use $bindifyjs to build or modify a declarative BindifyJS application."

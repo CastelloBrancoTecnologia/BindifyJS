@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR" viewmodel="CommandExampleViewModel">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BindifyJS — Command</title>
+    <link rel="stylesheet" href="../shared.css">
+    <script type="module" src="ViewModel.js"></script>
+    <script type="module" src="../../BindifyJS.auto.js"></script>
+</head>
+<body>
+    <main>
+        <h1>Command</h1>
+        <label>Texto
+            <input data-bind="target: value; source: texto; mode: twoway;">
+        </label>
+        <button data-command="saveCommand">Salvar</button>
+        <output data-bind="target: textContent; source: mensagem;"></output>
+    </main>
+</body>
+</html>

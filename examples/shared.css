@@ -1,0 +1,53 @@
+:root {
+    color-scheme: light;
+    font-family: system-ui, sans-serif;
+    color: #183128;
+    background: #f3f7f5;
+}
+
+body {
+    max-width: 42rem;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+main {
+    display: grid;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid #d8e2dc;
+    border-radius: 1rem;
+    background: white;
+}
+
+label {
+    display: grid;
+    gap: .35rem;
+    font-weight: 700;
+}
+
+input,
+button {
+    min-height: 2.6rem;
+    padding: .5rem .75rem;
+    border: 1px solid #9baca3;
+    border-radius: .5rem;
+    font: inherit;
+}
+
+button {
+    width: fit-content;
+    cursor: pointer;
+    color: white;
+    border-color: #19734a;
+    background: #19734a;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+
+[data-validation-for] {
+    color: #b42318;
+}

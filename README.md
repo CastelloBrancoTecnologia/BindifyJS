@@ -56,6 +56,19 @@ estrutura e declarações no HTML, apresentação no CSS, comportamento no
 ViewModel e infraestrutura no motor. Essa separação reduz contexto
 desnecessário, alterações acidentais e código repetitivo.
 
+O repositório inclui três recursos adicionais para agentes:
+
+- [`AGENTS.md`](./AGENTS.md) define arquitetura, convenções e checklist para
+  alterações na biblioteca.
+- [`skills/bindifyjs`](./skills/bindifyjs) contém uma skill oficial que orienta
+  a criação e manutenção de aplicações BindifyJS.
+- [`examples`](./examples) reúne receitas mínimas executáveis, cada uma focada
+  em uma funcionalidade.
+
+A skill pode ser copiada ou instalada como `bindifyjs` no diretório de skills
+do agente. Sua presença não altera a biblioteca enviada ao navegador e não
+adiciona dependências de runtime.
+
 ## Funcionalidades
 
 - ViewModels observáveis por meio de Proxy.
@@ -85,6 +98,7 @@ desnecessário, alterações acidentais e código repetitivo.
 
 ~~~text
 BindifyJS/
+├── AGENTS.md
 ├── BindifyJS.js
 ├── BindifyJS.d.ts
 ├── BindifyJS.auto.js
@@ -97,6 +111,20 @@ BindifyJS/
 ├── CadastroPageViewModel.js
 ├── PainelPage.html
 ├── PainelPageViewModel.js
+├── examples/
+│   ├── basic-binding/
+│   ├── binding-group/
+│   ├── command/
+│   ├── list/
+│   ├── validation/
+│   └── visual-state/
+├── skills/
+│   └── bindifyjs/
+│       ├── SKILL.md
+│       ├── agents/
+│       │   └── openai.yaml
+│       └── references/
+│           └── patterns.md
 ├── core/
 │   ├── Binder.js
 │   ├── BindingParser.js

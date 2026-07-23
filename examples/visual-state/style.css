@@ -1,0 +1,21 @@
+.meter {
+    height: 1rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #d8e2dc;
+}
+
+.meter div {
+    width: calc(var(--progress) * 1%);
+    height: 100%;
+    background: var(--accent-color);
+    transition: width 180ms ease;
+}
+
+.meter.complete div {
+    animation: pulse 500ms ease;
+}
+
+@keyframes pulse {
+    50% { filter: brightness(1.4); }
+}
