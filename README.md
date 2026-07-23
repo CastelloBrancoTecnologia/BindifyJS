@@ -15,8 +15,9 @@ build. A aplicação continua sendo HTML declarativo, CSS e JavaScript puro.
 
 Esse desenho acompanha um movimento prático em muitas organizações: reduzir
 dependências grandes, diminuir camadas obrigatórias de build e voltar a usar
-as capacidades nativas do navegador sempre que elas forem suficientes. Em
-times que precisam manter produtos por muitos anos, JavaScript puro reduz
+as capacidades nativas do navegador sempre que elas forem suficientes.
+
+Em times que precisam manter produtos por muitos anos, JavaScript puro reduz
 acoplamento a toolchains, facilita auditorias, simplifica onboarding e evita
 que decisões de infraestrutura dominem a evolução da aplicação. Para alguns
 projetos, isso inclui até remover TypeScript do caminho crítico de execução,
