@@ -27,6 +27,35 @@ O arquivo `BindifyJS.d.ts` fornece autocomplete, navegação e verificação de 
 nos editores, sem alterar o JavaScript enviado ao navegador e sem exigir
 pré-compilação.
 
+## AI-friendly
+
+BindifyJS foi projetada para ser fácil de compreender, gerar, revisar e testar
+com auxílio de inteligência artificial. Isso não depende de uma integração com
+um modelo específico: decorre da arquitetura explícita e previsível da
+biblioteca.
+
+- O HTML declara bindings, eventos, validações e estados sem esconder
+  comportamento em código gerado.
+- A gramática dos atributos é pequena e restrita; uma IA pode alterar um
+  binding sem precisar interpretar expressões JavaScript arbitrárias no HTML.
+- As regras de negócio permanecem em ViewModels JavaScript comuns, com nomes
+  e responsabilidades fáceis de localizar.
+- Não há compilador, transformação de código ou framework CLI: o código visto
+  pela IA é o mesmo código executado pelo navegador.
+- `BindifyJS.d.ts` descreve a API para ferramentas que compreendem TypeScript,
+  mesmo que a aplicação continue escrita em JavaScript puro.
+- Erros de bindings inválidos aparecem cedo e com mensagens específicas, o
+  que reduz tentativas e facilita correções automatizadas.
+- A suíte de testes pode ser executada diretamente com `npm test`, permitindo
+  que alterações produzidas por IA sejam verificadas antes de serem aceitas.
+- Exemplos completos mostram o contrato entre HTML, CSS e ViewModel, dando à
+  IA padrões concretos para reutilizar em novas telas.
+
+Na prática, um agente pode concentrar a alteração no lugar correspondente:
+estrutura e declarações no HTML, apresentação no CSS, comportamento no
+ViewModel e infraestrutura no motor. Essa separação reduz contexto
+desnecessário, alterações acidentais e código repetitivo.
+
 ## Funcionalidades
 
 - ViewModels observáveis por meio de Proxy.
