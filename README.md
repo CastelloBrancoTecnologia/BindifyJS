@@ -2490,4 +2490,7 @@ BindifyJS é distribuída sob a licença MIT. Você pode usar, copiar, modificar
 publicar e distribuir a biblioteca, inclusive em projetos comerciais, desde
 que preserve o aviso de copyright e a licença.
 
+Copyright (c) 2026 Castello Branco Tecnologia LTDA  
+Copyright (c) 2026 Cesar Castello Branco Filho
+
 Consulte o arquivo [LICENSE](./LICENSE) para ler os termos completos.
